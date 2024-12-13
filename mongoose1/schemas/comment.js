@@ -13,7 +13,7 @@ const commentSchema = new Schema({
     ref: "User", // User 스키마 사용자의 ObjectId가 삽입됨
   },
   comment: {
-    type: Number,
+    type: String,
     required: true,
   },
   createdAt: {

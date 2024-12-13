@@ -4,10 +4,10 @@ const morgan = require("morgan");
 const nunjucks = require("nunjucks");
 // 데이터베이스 연결 모듈 import
 const conn = require("./schemas/connect");
-
-//라우터 연결
+// 라우터 연결
 const indexRouter = require("./routes/index");
 const userRouter = require("./routes/user");
+const commentRouter = require("./routes/comment");
 
 const app = express();
 
@@ -33,6 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use("/", indexRouter);
 app.use("/users", userRouter);
+app.use("/comments", commentRouter);
 
 // 404 오류
 app.use((req, res, next) => {
