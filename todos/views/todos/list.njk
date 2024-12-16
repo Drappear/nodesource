@@ -1,0 +1,61 @@
+{% extends "templates/layout.njk" %}
+{% block style %}
+  
+{% endblock %}
+{% block content %}
+  <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <!-- content 영역 -->
+    <h1>{{title}}</h1>
+    <div class="container">
+      <a class="btn btn-secondary" href="/todos/completed/list">완료목록</a>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">번호</th>
+            <th scope="col">할 일</th>
+            <th scope="col">중요</th>
+            <th scope="col">완료</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for todo in todos %}
+            <tr>
+              <td scope="row">{{todo._id}}</td>
+              <td>
+                <a href="/todos/{{todo._id}}">{{todo.title}}</a>
+              </td>
+              <td>
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="completed"
+                  name="completed"
+                  {{'checked' if todo.important else ''}}
+                  disabled
+                />
+              </td>
+              <td>
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  id="completed"
+                  name="completed"
+                  {{'checked' if todo.completed else ''}}
+                  disabled
+                />
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <form method="post" id="completeForm">
+      <input type="hidden" name="id" value="" />
+      <input type="hidden" name="completed" value="" />
+    </form>
+  </main>  
+{% endblock %}
+{% block script %}
+    
+{% endblock %}
+</html>

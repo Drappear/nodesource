@@ -4,4 +4,5 @@
 /ch1/node_modules
 /express1/node_modules
 /mongoose1/node_modules
+/todos/node_modules
 *.json
