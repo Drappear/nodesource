@@ -89,5 +89,7 @@
 </section>
 {% endblock %}
 {% block script %}  
-   
+   <script>
+      const socket = io.connect("ws://localhost:8005/chat",{path:'/socket.io'});
+    </script>
 {% endblock %}

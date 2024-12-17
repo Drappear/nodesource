@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="my-4 mx-2">
-                    <form  class="row gx-2 justify-content-center">                            
+                    <form  class="row gx-2 justify-content-center" method="post" action="/room">                            
                         <div class="col-md-5">
                             <input type="text" name="title" class="form-control" placeholder="방 제목(20자까지 가능합니다.)" maxlength="20"/>
                         </div>
@@ -65,4 +65,10 @@
             </div>            
         </div>
     </div>
+{% endblock %}
+{% block script %}
+    <script>
+      const socket = io.connect("ws://localhost:8005/room",{path:'/socket.io'});
+    </script>
+    <script src="/js/main.js"></script>
 {% endblock %}
