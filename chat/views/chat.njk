@@ -89,7 +89,9 @@
 </section>
 {% endblock %}
 {% block script %}  
-   <script>
+    <script>
       const socket = io.connect("ws://localhost:8005/chat",{path:'/socket.io'});
+      socket.emit('join', new URL(location).pathname.split("/").at(-1));
     </script>
+    <script src="/js/chat.js"></script>
 {% endblock %}

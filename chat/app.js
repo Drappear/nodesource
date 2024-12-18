@@ -7,15 +7,15 @@ const nunjucks = require("nunjucks");
 const dotenv = require("dotenv");
 const ColorHash = require("color-hash").default;
 
-// 내부 모듈
-const pageRouter = require("./routes/page");
-const connect = require("./schema/connect");
-
 // env파일 읽기
 dotenv.config();
 
 // 소켓 연동
 const webSocket = require("./socket");
+
+// 내부 모듈
+const pageRouter = require("./routes/page");
+const connect = require("./schema/connect");
 
 const app = express();
 
@@ -33,8 +33,6 @@ nunjucks.configure("views", {
 
 // 데이터베이스 연결
 connect();
-
-app.use("/", pageRouter);
 
 // 미들웨어 연결
 app.use(morgan("dev"));
@@ -62,6 +60,8 @@ app.use((req, res, next) => {
   }
   next();
 });
+
+app.use("/", pageRouter);
 
 // 404 오류
 app.use((req, res, next) => {

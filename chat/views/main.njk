@@ -33,14 +33,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>노드스터디</td>
-                                    <td>공개방</td>
-                                    <td>2</td>
-                                    <td>#10234558</td>
-                                    <td><a href="" class="btn btn-sm btn-outline-success">입장</a></td>
-                                </tr>                               
+                                {% for room in rooms %}
+                                <tr data-id="{{room._id}}">
+                                    <th scope="row">{{room._id}}</th>
+                                    <td>{{room.title}}</td>
+                                    <td>{{'비밀방' if room.password else '공개방'}}</td>
+                                    <td>{{room.max}}</td>
+                                    <td style="color:{{room.owner}}">{{room.owner}}</td>
+                                    <td><button type="button" class="btn btn-sm btn-outline-success" data-id="{{room.id}}" data-password="{{'true' if room.password else 'false'}}">입장</button></td>
+                                </tr>                                                                   
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
@@ -67,6 +69,14 @@
     </div>
 {% endblock %}
 {% block script %}
+    <script>
+        // error 발생시
+        window.onload = () =>{
+            if(new URL(location.href).searchParams.get("error")){
+                alert(new URL(location.href).searchParams.get("error"));
+            }
+        };
+    </script>
     <script>
       const socket = io.connect("ws://localhost:8005/room",{path:'/socket.io'});
     </script>

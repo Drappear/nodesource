@@ -1,6 +1,5 @@
 // 몽고디비와 연결하는 모듈
 var mongoose = require("mongoose");
-var dotenv = require("dotenv").config();
 
 const { MONGO_ID, MONGO_PASSWORD, NODE_ENV } = process.env;
 

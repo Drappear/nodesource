@@ -2,3 +2,4 @@
 .gitattributes
 /*/node_modules
 *.json
+.env
